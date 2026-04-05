@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.json({ message: "Server is live,Thank you for using my service" });
+});
+
 // TODO: replace with your own MongoDB connection string
 mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/url_shortener");
 
@@ -22,7 +26,7 @@ app.post("/api/urls", async (req, res) => {
   });
 
   res.json(newUrl);
-}); 
+});
 
 app.get("/api/urls", async (req, res) => {
   const urls = await Url.find();
